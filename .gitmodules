@@ -1,0 +1,4 @@
+[submodule "masks"]
+	path = masks
+	url = https://github.com/lnnrtwttkhn/highspeed-masks.git
+	datalad-id = 3fd388b8-227e-11eb-be00-acde48001122

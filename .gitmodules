@@ -6,3 +6,7 @@
 	path = fmriprep
 	url = https://github.com/lnnrtwttkhn/highspeed-fmriprep.git
 	datalad-id = 5d3f9086-f9a2-11ea-ab15-acde48001122
+[submodule "glm"]
+	path = glm
+	url = https://github.com/lnnrtwttkhn/highspeed-glm.git
+	datalad-id = b7fed17e-2758-11eb-aebd-8c859041f10d

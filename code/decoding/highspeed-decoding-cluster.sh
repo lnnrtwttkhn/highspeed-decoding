@@ -60,13 +60,13 @@ PARTICIPANTS=$1
 # ==============================================================================
 # initialize a counter for the subjects:
 SUB_COUNT=0
-for i in {1..1}; do
+for i in {1..40}; do
 	# turn the subject id into a zero-padded number:
 	SUB=$(printf "%02d\n" ${i})
 	# start slurm job file:
 	echo "#!/bin/bash" > job
 	# name of the job
-	echo "#SBATCH --job-name highsopeed-decoding-sub-${SUB}" >> job
+	echo "#SBATCH --job-name highspeed-decoding-sub-${SUB}" >> job
 	# set the expected maximum running time for the job:
 	echo "#SBATCH --time 12:00:00" >> job
 	# determine how much RAM your operation needs:
@@ -81,7 +81,7 @@ for i in {1..1}; do
 	echo "#SBATCH --workdir ." >> job
 	# activate virtual environment on cluster:
 	echo "source /etc/bash_completion.d/virtualenvwrapper" >> job
-	echo "workon decoding" >> job
+	echo "workon highspeed-decoding" >> job
 	# define the main command:
 	echo "python3 ${PATH_SCRIPT} ${SUB}" >> job
 	# submit job to cluster queue and remove it to avoid confusion:

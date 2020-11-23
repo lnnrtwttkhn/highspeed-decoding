@@ -76,7 +76,7 @@ if 'darwin' in sys.platform:
 elif 'linux' in sys.platform:
     # path to the project root:
     project_name = 'highspeed-decoding'
-    path_root = os.getcwd().split(project_name)[0] + project_name
+    path_root = os.getenv('PWD').split(project_name)[0] + project_name
     # define the path to the cluster:
     path_tardis = path_root
     # define the path to the server:
@@ -220,42 +220,42 @@ path_mask_vis_task = opj(path_masks, 'mask_visual', sub, '*', '*task-highspeed*.
 path_mask_vis_task = sorted(glob.glob(path_mask_vis_task), key=lambda f: os.path.basename(f))
 logging.info('found %d visual mask task files' % len(path_mask_vis_task))
 logging.info('paths to visual mask task files:\n%s' % pformat(path_mask_vis_task))
-dl.get(glob.glob(path_mask_vis_task))
+dl.get(path_mask_vis_task)
 
 # load the hippocampus mask task files:
 path_mask_hpc_task = opj(path_masks, 'mask_hippocampus', sub, '*', '*task-highspeed*.nii.gz')
 path_mask_hpc_task = sorted(glob.glob(path_mask_hpc_task), key=lambda f: os.path.basename(f))
 logging.info('found %d hpc mask files' % len(path_mask_hpc_task))
 logging.info('paths to hpc mask task files:\n%s' % pformat(path_mask_hpc_task))
-dl.get(glob.glob(path_mask_hpc_task))
+dl.get(path_mask_hpc_task)
 
 # load the whole brain mask files:
 path_mask_whole_task = opj(path_fmriprep, '*', 'func', '*task-highspeed*T1w*brain_mask.nii.gz')
 path_mask_whole_task = sorted(glob.glob(path_mask_whole_task), key=lambda f: os.path.basename(f))
 logging.info('found %d whole-brain masks' % len(path_mask_whole_task))
 logging.info('paths to whole-brain mask files:\n%s' % pformat(path_mask_whole_task))
-dl.get(glob.glob(path_mask_whole_task))
+dl.get(path_mask_whole_task)
 
 # load the functional mri task files:
 path_func_task = opj(path_level1, 'smooth', sub, '*', '*task-highspeed*nii.gz')
 path_func_task = sorted(glob.glob(path_func_task), key=lambda f: os.path.basename(f))
 logging.info('found %d functional mri task files' % len(path_func_task))
 logging.info('paths to functional mri task files:\n%s' % pformat(path_func_task))
-dl.get(glob.glob(path_func_task))
+dl.get(path_func_task)
 
 # define path to the functional resting state runs:
 path_rest = opj(path_tardis, 'masks', 'masks', 'smooth', sub, '*', '*task-rest*nii.gz')
 path_rest = sorted(glob.glob(path_rest), key=lambda f: os.path.basename(f))
 logging.info('found %d functional mri rest files' % len(path_rest))
 logging.info('paths to functional mri rest files:\n%s' % pformat(path_rest))
-dl.get(glob.glob(path_rest))
+dl.get(path_rest)
 
 # load the anatomical mri file:
 path_anat = opj(path_fmriprep, 'anat', '%s_desc-preproc_T1w.nii.gz' % sub)
 path_anat = sorted(glob.glob(path_anat), key=lambda f: os.path.basename(f))
 logging.info('found %d anatomical mri file' % len(path_anat))
 logging.info('paths to anatoimical mri files:\n%s' % pformat(path_anat))
-dl.get(glob.glob(path_anat))
+dl.get(path_anat)
 
 # load the confounds files:
 path_confs_task = opj(path_fmriprep, '*', 'func', '*task-highspeed*confounds_regressors.tsv')
@@ -263,21 +263,21 @@ path_confs_task = sorted(glob.glob(path_confs_task), key=lambda f: os.path.basen
 logging.info('found %d confounds files' % len(path_confs_task))
 logging.info('found %d confounds files' % len(path_confs_task))
 logging.info('paths to confounds files:\n%s' % pformat(path_confs_task))
-dl.get(glob.glob(path_confs_task))
+dl.get(path_confs_task)
 
 # load the spm.mat files:
 path_spm_mat = opj(path_level1, 'contrasts', sub, '*', 'SPM.mat')
 path_spm_mat = sorted(glob.glob(path_spm_mat), key=lambda f: os.path.dirname(f))
 logging.info('found %d spm.mat files' % len(path_spm_mat))
 logging.info('paths to spm.mat files:\n%s' % pformat(path_spm_mat))
-dl.get(glob.glob(path_spm_mat))
+dl.get(path_spm_mat)
 
 # load the t-maps of the first-level glm:
 path_tmap = opj(path_level1, 'contrasts', sub, '*', 'spmT*.nii')
 path_tmap = sorted(glob.glob(path_tmap), key=lambda f: os.path.dirname(f))
 logging.info('found %d t-maps' % len(path_tmap))
 logging.info('paths to t-maps files:\n%s' % pformat(path_tmap))
-dl.get(glob.glob(path_tmap))
+dl.get(path_tmap)
 '''
 ========================================================================
 LOAD THE MRI DATA:

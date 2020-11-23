@@ -4,3 +4,4 @@
 .Ruserdata
 code/*/*.html
 logs
+decoding/sub-*/logs

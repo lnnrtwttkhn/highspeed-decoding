@@ -1,27 +1,3 @@
----
-title: "Faster than thought: Detecting sub-second activation sequences with sequential fMRI pattern analysis"
-subtitle: "Short project title: highspeed"
-author:
-  - Lennart Wittkuhn^[Max Planck Institute for Human Development, wittkuhn@mpib-berlin.mpg.de]
-  - Nicolas W. Schuck^[Max Planck Institute for Human Development, schuck@mpib-berlin.mpg.de]
-date: "Last update: `r format(Sys.time(), '%d %B, %Y')`"
-output:
- html_document:
-    toc: true
-    self_contained: true
-    toc_float: true
-    toc_depth: 3
-    number_sections: true
-    highlight: pygments
-    theme: cosmo
-    df_print: paged
-    fig_caption: true
-fig.align: "center"
-header-includes:
-  - \usepackage{fontspec}
-  - \setmainfont{AgfaRotisSansSerif}
-email: wittkuhn@mpib-berlin.mpg.de
----
 
 ```{r, echo=FALSE, message=FALSE, include=FALSE}
 if (!requireNamespace("pacman")) install.packages("pacman")
@@ -34,8 +10,18 @@ if (basename(here::here()) == "highspeed"){
 }
 ```
 
+## Decoding
+
+### Main decoding pipeline
+
+Here, we show the Python code used to run the decoding pipeline:
+
 ```{python, echo=TRUE, code=readLines(file.path(path_root, "code", "decoding", "highspeed_decoding.py")), eval=FALSE, python.reticulate=FALSE}
 ```
+
+### Parallelization on HPC
+
+The decoding pipeline was parallelized on the local high performance cluster of the Max Planck Institute for Human Development, Berlin, Germany, using the following code:
 
 ```{bash, echo=TRUE, code=readLines(file.path(path_root, "code", "decoding", "highspeed-decoding-cluster.sh")), eval=FALSE}
 ```

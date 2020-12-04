@@ -10,3 +10,7 @@
 	path = glm
 	url = https://github.com/lnnrtwttkhn/highspeed-glm.git
 	datalad-id = b7fed17e-2758-11eb-aebd-8c859041f10d
+[submodule "bids"]
+	path = bids
+	url = https://github.com/lnnrtwttkhn/highspeed-bids.git
+	datalad-id = 94ae2510-f811-11ea-a3da-00e04c10078d

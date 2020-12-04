@@ -63,28 +63,28 @@ SUB_COUNT=0
 for i in {1..40}; do
 	# turn the subject id into a zero-padded number:
 	SUB=$(printf "%02d\n" ${i})
+	# start slurm job file:
+	echo "#!/bin/bash" > job
 	# name of the job
-	echo "#PBS -N decoding_sub-${SUB}" >> job
+	echo "#SBATCH --job-name highspeed-decoding-sub-${SUB}" >> job
 	# set the expected maximum running time for the job:
-	echo "#PBS -l walltime=12:00:00" >> job
+	echo "#SBATCH --time 12:00:00" >> job
 	# determine how much RAM your operation needs:
-	echo "#PBS -l mem=${MEM}" >> job
+	echo "#SBATCH --mem ${MEM}" >> job
 	# request multiple cpus:
-	echo "#PBS -l nodes=1:ppn=${N_CPUS}" >> job
+	echo "#SBATCH --cpus-per-task ${N_CPUS}" >> job
 	# write (output) log to log folder:
-	echo "#PBS -o ${PATH_LOG}" >> job
-	# write (error) log to log folder:
-	echo "#PBS -e ${PATH_LOG}" >> job
+	echo "#SBATCH --output ${PATH_LOG}/highspeed-decoding-sub-${SUB}-%j.out" >> job
 	# email notification on abort/end, use 'n' for no notification:
-	echo "#PBS -m n" >> job
+	echo "#SBATCH --mail-type NONE" >> job
 	# start in the current directory:
-	echo "#PBS -d ${PATH_CODE}" >> job
+	echo "#SBATCH --workdir ." >> job
 	# activate virtual environment on cluster:
 	echo "source /etc/bash_completion.d/virtualenvwrapper" >> job
-	echo "workon decoding" >> job
+	echo "workon highspeed-decoding" >> job
 	# define the main command:
 	echo "python3 ${PATH_SCRIPT} ${SUB}" >> job
 	# submit job to cluster queue and remove it to avoid confusion:
-	qsub job
+	sbatch job
 	rm -f job
 done

@@ -10,7 +10,18 @@ if (basename(here::here()) == "highspeed"){
 }
 ```
 
-## Decoding
+## Multivariate decoding
+
+### Overview
+
+#### Data availability
+
+The data is freely available from https://github.com/lnnrtwttkhn/highspeed-decoding and https://gin.g-node.org/lnnrtwttkhn/highspeed-decoding.
+
+#### License
+
+The dataset is licensed under Creative Commons Attribution-ShareAlike 4.0.
+Please see https://creativecommons.org/licenses/by-sa/4.0/ for details.
 
 ### Main decoding pipeline
 
@@ -24,4 +35,11 @@ Here, we show the Python code used to run the decoding pipeline:
 The decoding pipeline was parallelized on the local high performance cluster of the Max Planck Institute for Human Development, Berlin, Germany, using the following code:
 
 ```{bash, echo=TRUE, code=readLines(file.path(path_root, "code", "decoding", "highspeed-decoding-cluster.sh")), eval=FALSE}
+```
+
+### Software: Required packages
+
+The `requirements.txt` file lists the required packages which can be installed e.g., using `pip install -r requirements.txt`
+
+```{bash, echo=TRUE, code=readLines(file.path(path_root, "code", "decoding", "requirements.txt")), eval=FALSE}
 ```
